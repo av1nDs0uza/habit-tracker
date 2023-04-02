@@ -4,6 +4,7 @@ import 'package:habit_tracker/components/my_fab.dart';
 import 'package:habit_tracker/components/new_habit_box.dart';
 
 
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -62,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      floatingActionButton: myFloatingActionButton(onPressed: createNewHabit),
+      floatingActionButton: myFloatingActionButton(onPressed:createNewHabit),
       body: ListView.builder(
         itemCount:todaysHabitList.length,
         itemBuilder:(context, index ) {

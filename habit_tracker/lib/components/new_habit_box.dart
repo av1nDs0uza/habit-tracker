@@ -7,24 +7,6 @@ class EnterNewHabitBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: TextField(),
-      actions: [
-        MaterialButton(
-          onPressed: () {},
-          child: Text(
-            "Save",
-            style: TextStyle(color: Colors.white),
-            ),
-color: Colors.green,
-          ),
-        MaterialButton(
-          onPressed: () {},
-          child: Text(
-            "Cancel",
-            style: TextStyle(color: Colors.white),
-            ),
-color: Colors.red,
-          ),
-      ],
     );
 
   }
