@@ -50,13 +50,22 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   // save new habit
-void saveNewHabit() {
-
-}
+ void saveNewHabit() {
+ // add new habit to list
+    setState(() {
+      todaysHabitList.add([_newHabitNameController.text,false]);
+    });
+    
+    _newHabitNameController.clear();
+    // pop dialog box 
+    Navigator.of(context).pop();
+ }
 
   //cancel new habit
   void cancelNewHabit(){
+    // clear textfield
     _newHabitNameController.clear();
+    // pop dialog box 
     Navigator.of(context).pop();
   }
   
