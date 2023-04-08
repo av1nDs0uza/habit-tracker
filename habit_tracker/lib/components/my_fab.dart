@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class myFloatingActionButton extends StatelessWidget {
-
   final Function()? onPressed;
 
 
@@ -12,8 +11,9 @@ class myFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(onPressed: (){},
-    child: Icon(Icons.add),
+    return FloatingActionButton(
+      onPressed: onPressed,
+      child: Icon(Icons.add),
     );
   }
 }
