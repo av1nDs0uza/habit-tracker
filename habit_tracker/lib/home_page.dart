@@ -34,15 +34,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  // create a new habit 
+  // create a new habit
+  final _newHabitNameController = TextEditingController(); 
   void createNewHabit() {
     // show alert dialog for user to enter the new habit details
     showDialog(
       context: context, 
       builder: (context){
-        return EnterNewHabitBox();
+        return EnterNewHabitBox(
+          controller: _newHabitNameController,
+          onSave: saveNewHabit,
+          onCancel: cancelNewHabit,
+        );
       },
     );
+  }
+  // save new habit
+void saveNewHabit() {
+
+}
+
+  //cancel new habit
+  void cancelNewHabit(){
+    _newHabitNameController.clear();
+    Navigator.of(context).pop();
   }
   
   @override
