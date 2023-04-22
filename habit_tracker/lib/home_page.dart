@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/components/habit_tile.dart';
 import 'package:habit_tracker/components/my_fab.dart';
-import 'package:habit_tracker/components/new_habit_box.dart';
+import 'package:habit_tracker/components/my_alert_box.dart';
 
 
 
@@ -41,10 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
       context: context, 
       builder: (context){
-        return EnterNewHabitBox(
+        return MyAlertBox(
           controller: _newHabitNameController,
           onSave: saveNewHabit,
-          onCancel: cancelNewHabit,
+          onCancel: cancelDialogBox,
         );
       },
     );
@@ -62,11 +62,37 @@ class _MyHomePageState extends State<MyHomePage> {
  }
 
   //cancel new habit
-  void cancelNewHabit(){
+  void cancelDialogBox(){
     // clear textfield
     _newHabitNameController.clear();
     // pop dialog box 
     Navigator.of(context).pop();
+  }
+
+  // open habit settings to edit
+  void openHabitSettings(int index){
+    showDialog(context:context, builder: (context){
+      return MyAlertBox(
+        controller: _newHabitNameController,
+        onSave: () => saveExistingHabit(index), 
+        onCancel: cancelDialogBox,
+        );
+    },);
+  }
+
+  // save existing habit
+  void saveExistingHabit(int index){
+    setState(() {
+      todaysHabitList[index][0] = _newHabitNameController.text;
+    });
+
+  }
+
+  // delete habit
+  void deleteHabit(int index) {
+    setState(() {
+      todaysHabitList.removeAt(index);
+    });
   }
   
   @override
@@ -87,6 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
             habitName: todaysHabitList[index][0],
             habitCompleted: todaysHabitList[index][1], 
             onChanged: (value) => checkBoxTapped(value, index),
+            settingsTapped: (context) => openHabitSettings(index) ,
+            deleteTapped: (context) => deleteHabit(index) ,
             );
         }
        
